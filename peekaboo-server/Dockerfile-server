@@ -1,0 +1,19 @@
+from node:8.9.4-alpine
+COPY ./peekaboo-server /opt/peekaboo-server
+WORKDIR /opt/peekaboo-server
+RUN apk update && apk add --update --no-cache --virtual .build-deps \
+        binutils-gold \
+        curl \
+        g++ \
+        gcc \
+        gnupg \
+        libgcc \
+        linux-headers \
+        make \
+        python && \
+		mkdir -p /opt/peekaboo-server/logs && \
+		npm install && \
+		apk del .build-deps
+EXPOSE 3005/tcp
+EXPOSE 3150/tcp
+CMD [ "/bin/sh","-c","node start app.js" ]
