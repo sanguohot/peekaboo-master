@@ -16,4 +16,4 @@ RUN apk update && apk add --update --no-cache --virtual .build-deps \
 		apk del .build-deps
 EXPOSE 3005/tcp
 EXPOSE 3150/tcp
-CMD [ "/bin/sh","-c","node start app.js" ]
+CMD [ "/bin/sh","-c","node app.js" ]
